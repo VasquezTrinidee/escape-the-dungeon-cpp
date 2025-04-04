@@ -3,13 +3,14 @@
 
 using namespace std;
 
+// Function to validate user input
 int getChoice(int min, int max) {
     int choice;
     while (true) {
         cout << "Enter your choice: ";
         cin >> choice;
         if (cin.fail() || choice < min || choice > max) {
-            cin.clear();
+            cin.clear(); 
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid input! Please enter a number between " << min << " and " << max << ".\n";
         } else {
@@ -19,29 +20,30 @@ int getChoice(int min, int max) {
 }
 
 int main() {
-    int health = 100; 
+    int health = 100; // Player health
     int choice;
-
-    cout << "Welcome to 'Escape the dungeon'!\n";
+    
+    cout << "Welcome to 'Escape the Dungeon'!\n";
     cout << "You wake up in a dark dungeon with a note beside you: 'Escape before the dungeon claims you.'\n";
     cout << "Your health starts at 100.\n\n";
 
+    // First Decision - Choose a path
     cout << "You reach a fork in the dungeon. Do you:\n";
     cout << "1. Go left (a dark and damp corridor)\n";
     cout << "2. Go right (a flickering torch illuminates the path)\n";
-
+    
     choice = getChoice(1, 2);
 
     if (choice == 1) {
         cout << "You trip over a loose stone and hit your head! (-10 Health)\n";
         health -= 10;
     } else {
-        cout << "The torchreveals a hidden passage.\n";
+        cout << "The torch reveals a hidden passage.\n";
     }
 
     cout << "Current Health: " << health << "\n\n";
 
-
+    // Second Decision - Encountering a Monster
     cout << "A shadowy figure blocks your way! Do you:\n";
     cout << "1. Fight the creature\n";
     cout << "2. Try to sneak past\n";
@@ -57,7 +59,7 @@ int main() {
 
     cout << "Current Health: " << health << "\n\n";
 
-
+    // Third Decision - Finding a Potion
     cout << "You find a glowing bottle. Do you drink it?\n";
     cout << "1. Yes (It could be a health potion)\n";
     cout << "2. No (It might be poisoned)\n";
@@ -69,14 +71,14 @@ int main() {
             cout << "The potion restores 20 health!\n";
             health += 20;
             break;
-        case 2: 
+        case 2:
             cout << "You leave it alone and move forward.\n";
             break;
     }
 
     cout << "Current Health: " << health << "\n\n";
 
-    
+    // Win/Lose Condition
     if (health <= 0) {
         cout << "Your health dropped to 0. You collapse... GAME OVER.\n";
     } else {
